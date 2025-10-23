@@ -1,4 +1,50 @@
+@import "../styles/_form.scss";
+
 /* DO NOT CHANGE THIS ROOT CLASS NAME*/
 #task-1 {
-  /* Styles goes here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: $background-light;
+
+  form {
+    background: $uniwise-white;
+    border-radius: 16px;
+    box-shadow: $shadow-medium;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      margin-top: 20px;
+      color: $text-primary;
+      font-weight: 600;
+      font-size: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    input {
+      @include input-styles;
+      
+      margin-bottom: 4px;
+    }
+
+    button {
+      @include button-styles;
+      width: 100%;
+      margin-top: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      
+      &:focus {
+        box-shadow: $shadow-focus;
+      }
+    }
+  }
 }
