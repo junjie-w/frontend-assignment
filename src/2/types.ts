@@ -1,4 +1,4 @@
 export interface ItemData {
-  id: number
+  id: string
   text: string
 }
