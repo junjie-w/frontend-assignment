@@ -1,7 +1,9 @@
 import { FunctionComponent } from "react";
+import './List.scss';
 
 // Components
 import Item from "./Item";
+import { ItemData } from "../types";
 
 /*
  * The ListProps interface defines the types for the components props.
@@ -13,10 +15,46 @@ import Item from "./Item";
  * and remove the ListProps interface
  */
 
-interface ListProps {}
+interface ListProps {
+  items: ItemData[]
+  searchQuery?: string
+  noResultsMessage?: string
+}
 
-const List: FunctionComponent<ListProps> = (props) => {
-  return <div>#List goes here#</div>;
+const List: FunctionComponent<ListProps> = ({
+  items,
+  searchQuery = '',
+  noResultsMessage = 'No results found'
+}) => {
+   if (items.length === 0 && searchQuery) {
+    return (
+      <div className="search-results">
+        <div className="no-results">
+          <p>{noResultsMessage} {searchQuery && `for "${searchQuery}"`}</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="search-results">
+      <div className="results-header">
+        <span className="results-count">
+          {items.length} item{items.length !== 1 ? 's' : ''}
+          {searchQuery && ` found for "${searchQuery}"`}
+        </span>
+      </div>
+      <ul className="search-list">
+        {items.map((item) => (
+          <Item
+            key={item.id}
+            text={item.text || ''}
+            searchQuery={searchQuery}
+          />
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default List;
