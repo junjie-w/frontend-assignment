@@ -1,3 +1,6 @@
+@import "../styles/_tokens.scss";
+@import "../styles/_form.scss";
+
 /* DO NOT CHANGE THIS ROOT CLASS NAME*/
 #task-3 {
   /* Styles goes here */
@@ -9,31 +12,15 @@
   .todo-container {
     display: flex;
     flex-direction: column;
-    height: 400px;
+    height: auto;
     border: 1px solid #eee;
     border-radius: 8px;
-    overflow: hidden;
+    margin-bottom: 100px;
+    box-shadow: $shadow-small;
   }
   
   .search-results {
     padding: 20px;
-    flex: 1;
-    overflow-y: scroll;
-    
-    .search-list {
-      height: 500px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      
-      &::-webkit-scrollbar {
-        width: 6px;
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 3px;
-      }
-    }
   }
 
   .input-divider {
@@ -42,9 +29,21 @@
   }
   
   .add-todo-container {
-    padding: 10px;
-    background-color: white;
-    border-top: 1px solid #eee;
-    margin-top: auto;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    padding: 15px;
+    background-color: $uniwise-white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: $shadow-small;
+    z-index: 100;
+    max-width: 800px;
+    
+    .input-container {
+      margin-bottom: 0;
+    }
   }
 }
