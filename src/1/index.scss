@@ -34,6 +34,20 @@
       @include input;
       
       margin-bottom: 4px;
+      
+      &.error {
+        border-color: #e74c3c;
+        transition: $transition-slow;
+      }
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 14px;
+      margin-top: 4px;
+      margin-bottom: 16px;
+      opacity: 1;
+      transition: $transition-slow;
     }
 
     button {
