@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react"
-import Input from "../2/components/Input"
-import List from '../2/components/List'
+import Input from "../components/Input"
+import List from '../components/List'
 import { 
   filterTodosBySearchQuery, 
   addTodo, 
