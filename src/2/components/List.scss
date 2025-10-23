@@ -19,17 +19,24 @@
     }
   }
 
-  .no-results {
+  .no-results, .empty-list {
     background: $background-light;
     text-align: center;
     padding: 60px 20px;
     color: $text-secondary;
     border-radius: 12px;
-    border: 1px solid #e1e5e9;
 
-    span {
-      font-size: 14px;
-      color: $text-secondary;
+    p {
+      font-size: 18px;
+      margin: 0 0 8px 0;
     }
+  }
+
+  .empty-list {
+    border: 2px dashed #dee2e6;
+  }
+
+  .no-results {
+    border: 1px solid #e1e5e9;
   }
 }

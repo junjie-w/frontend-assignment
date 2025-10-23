@@ -18,23 +18,41 @@ import { ItemData } from "../types";
 interface ListProps {
   items: ItemData[]
   searchQuery?: string
+  onToggle?: (id: string) => void
+  onDelete?: (id: string) => void
+  emptyListMessage?: string
   noSearchResultsMessage?: string
 }
 
 const List: FunctionComponent<ListProps> = ({
   items,
   searchQuery = '',
-  noSearchResultsMessage = 'No results found'
+  onToggle,
+  onDelete,
+  emptyListMessage = 'No items',
+  noSearchResultsMessage = 'No results found',
 }) => {
-   if (items.length === 0 && searchQuery) {
+  if (items.length === 0 && searchQuery) {
     return (
       <div className="search-results">
         <div className="no-results">
           <p>{noSearchResultsMessage} {searchQuery && `for "${searchQuery}"`}</p>
         </div>
       </div>
-    )
+    );
   }
+  
+  if (items.length === 0) {
+    return (
+      <div className="search-results">
+        <div className="empty-list">
+          <p>{emptyListMessage}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const completedCount = onToggle ? items.filter(i => i?.completed)?.length : 0;
 
   return (
     <div className="search-results">
@@ -42,14 +60,19 @@ const List: FunctionComponent<ListProps> = ({
         <span className="results-count">
           {items.length} item{items.length !== 1 ? 's' : ''}
           {searchQuery && ` found for "${searchQuery}"`}
+          {completedCount > 0 && ` (${completedCount} completed)`}
         </span>
       </div>
       <ul className="search-list">
         {items.map((item) => (
           <Item
             key={item.id}
+            id={item.id}
             text={item.text || ''}
+            completed={item?.completed}
             searchQuery={searchQuery}
+            onToggle={onToggle}
+            onDelete={onDelete}
           />
         ))}
       </ul>
