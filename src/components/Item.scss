@@ -8,7 +8,6 @@
   padding: 16px;
   position: relative;
   transition: $transition-default;
-  cursor: pointer;
 
   &:hover {
     border-color: $uniwise-green;
@@ -83,8 +82,10 @@
       transition: $transition-default;
 
       &:hover {
-        background: $background-light;
+        background: $background-dark;
         border-color: #e1e5e9;
+        box-shadow: $shadow-small;
+        transition: $transition-default;
       }
     }
   }
