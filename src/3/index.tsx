@@ -64,17 +64,16 @@ const Task3: React.FunctionComponent = () => {
           onDelete={handleDeleteTodo}
           emptyListMessage="No todos yet"
         />
-        <div className="input-divider"></div>
-        <div className="add-todo-container">
-          <Input 
-            value={newTodoText}
-            onChange={handleNewTodoChange}
-            onAdd={handleAddTodo}
-            placeholder="Add a todo..." 
-            showAddButton={true} 
-            icon="✏️" 
-          />
-        </div>
+      </div>
+      <div className="add-todo-container">
+        <Input 
+          value={newTodoText}
+          onChange={handleNewTodoChange}
+          onAdd={handleAddTodo}
+          placeholder="Add a todo..." 
+          showAddButton={true} 
+          icon="✏️" 
+        />
       </div>
    </div>
   );
