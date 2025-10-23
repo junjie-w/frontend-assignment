@@ -1,0 +1,60 @@
+@import "./_tokens.scss";
+
+@mixin input-styles {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  background: $uniwise-white;
+  color: $text-primary;
+  transition: $transition-default;
+  font-family: inherit;
+  box-sizing: border-box;
+  cursor: text;
+
+  &::placeholder {
+    color: #999;
+    font-style: italic;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: darken($uniwise-green, 5%);
+    box-shadow: $shadow-focus;
+    background: $background-light;
+  }
+
+  &:hover:not(:focus) {
+    border-color: lighten($uniwise-green, 5%);
+    box-shadow: $shadow-small;
+  }
+}
+
+@mixin button-styles {
+  background: $uniwise-green;
+  color: $uniwise-white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-default;
+
+  &:hover {
+    background: darken($uniwise-green, 5%);
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: $shadow-medium;
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.99);
+    box-shadow: $shadow-small;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: $shadow-focus;
+  }
+}
