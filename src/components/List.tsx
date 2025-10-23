@@ -3,7 +3,7 @@ import './List.scss';
 
 // Components
 import Item from "./Item";
-import { ItemData } from "../types";
+import { ItemData } from "../2/types";
 
 /*
  * The ListProps interface defines the types for the components props.

@@ -1,8 +1,8 @@
 import { FunctionComponent, useMemo, useState } from "react";
 
 // Components
-import Input from "./components/Input";
-import List from "./components/List";
+import Input from "../components/Input";
+import List from "../components/List";
 import { mockData } from "./data/mockData";
 
 const Task2: FunctionComponent = () => {
