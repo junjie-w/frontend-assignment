@@ -7,7 +7,7 @@ import { mockData } from "./data/mockData";
 
 const Task2: FunctionComponent = () => {
   const placeholder = "Search beers..."
-  const noResultsMessage = "No results found"
+  const noSearchResultsMessage = "No results found"
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -36,7 +36,7 @@ const Task2: FunctionComponent = () => {
       <List 
         items={filteredItems}
         searchQuery={searchQuery}
-        noResultsMessage={noResultsMessage}
+        noSearchResultsMessage={noSearchResultsMessage}
       />
     </div>
   );

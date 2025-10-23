@@ -18,19 +18,19 @@ import { ItemData } from "../types";
 interface ListProps {
   items: ItemData[]
   searchQuery?: string
-  noResultsMessage?: string
+  noSearchResultsMessage?: string
 }
 
 const List: FunctionComponent<ListProps> = ({
   items,
   searchQuery = '',
-  noResultsMessage = 'No results found'
+  noSearchResultsMessage = 'No results found'
 }) => {
    if (items.length === 0 && searchQuery) {
     return (
       <div className="search-results">
         <div className="no-results">
-          <p>{noResultsMessage} {searchQuery && `for "${searchQuery}"`}</p>
+          <p>{noSearchResultsMessage} {searchQuery && `for "${searchQuery}"`}</p>
         </div>
       </div>
     )
