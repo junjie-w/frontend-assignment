@@ -27,3 +27,10 @@ export const toggleTodo = (todos: Todo[], id: string): Todo[] => {
 export const deleteTodo = (todos: Todo[], id: string): Todo[] => {
   return todos.filter(todo => todo.id !== id)
 }
+
+export const sortTodos = (todos: Todo[]): Todo[] => {
+  return [...todos].sort((a, b) => {
+    if (a?.completed === b?.completed) return 0;
+    return a.completed ? 1 : -1;
+  });
+}
