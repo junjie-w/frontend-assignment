@@ -11,25 +11,36 @@ import './Input.scss';
  * and remove the InputProps interface
  */
 
-interface InputProps {
-  value: string
-  onChange: (value: string) => void
-  placeholder: string
+export interface InputProps {
+  value?: string
+  onChange?: (value: string) => void
+  onAdd?: (text: string) => void
+  placeholder?: string
   icon?: string
+  showAddButton?: boolean
 }
 
 const Input: FunctionComponent<InputProps> = ({ 
-  value, 
+  value = '', 
   onChange, 
-  placeholder,
-  icon
+  onAdd,
+  placeholder = '',
+  icon,
+  showAddButton = false
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value)
-  }
+    onChange?.(e.target.value)
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!value.trim() || !onAdd) return
+    
+    onAdd(value.trim())
+  };
 
   return (
-    <div className="input-container">
+    <form className="input-container" onSubmit={handleSubmit}>
       <input
         placeholder={placeholder}
         value={value}
@@ -37,7 +48,10 @@ const Input: FunctionComponent<InputProps> = ({
         aria-label={placeholder}
       />
       {icon && <div className="input-icon">{icon}</div>}
-    </div>
+      {showAddButton && (
+        <button type="submit" className="add-btn">Add</button>
+      )}
+    </form>
   );
 };
 

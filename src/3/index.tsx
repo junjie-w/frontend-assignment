@@ -1,4 +1,13 @@
-import * as React from "react";
+import React, { useState, useMemo } from "react"
+import Input from "../2/components/Input"
+import List from '../2/components/List'
+import { 
+  filterTodosBySearchQuery, 
+  addTodo, 
+  toggleTodo, 
+  deleteTodo 
+} from './helpers'
+import type { ItemData as Todo } from '../2/types'
 
 // Style
 import "./index.scss";
@@ -10,7 +19,65 @@ import "./index.scss";
  */
 
 const Task3: React.FunctionComponent = () => {
-  return <div id="task-3">#Code goes here#</div>;
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [newTodoText, setNewTodoText] = useState('');
+  
+  const filteredTodos = useMemo(() => 
+    filterTodosBySearchQuery(todos, searchQuery), 
+    [todos, searchQuery]
+  );
+  
+  const handleAddTodo = (text: string) => {
+    if (text.trim()) {
+      setTodos(prev => addTodo(prev, text))
+      setNewTodoText('')
+    }
+  };
+  
+  const handleToggleTodo = (id: string) => 
+    setTodos(prev => toggleTodo(prev, String(id)))
+  
+  const handleDeleteTodo = (id: string) => 
+    setTodos(prev => deleteTodo(prev, String(id)))
+  
+  const handleNewTodoChange = (value: string) => {
+    setNewTodoText(value);
+  };
+
+  return (
+   <div id="task-3">
+    <h2 className="app-title">Todo List</h2>
+      <div className="todo-inputs">
+        <Input 
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Search todos..."
+          icon="🔍"
+        />       
+      </div>
+      <div className="todo-container">
+        <List 
+          items={filteredTodos}
+          searchQuery={searchQuery}
+          onToggle={handleToggleTodo}
+          onDelete={handleDeleteTodo}
+          emptyListMessage="No todos yet"
+        />
+        <div className="input-divider"></div>
+        <div className="add-todo-container">
+          <Input 
+            value={newTodoText}
+            onChange={handleNewTodoChange}
+            onAdd={handleAddTodo}
+            placeholder="Add a todo..." 
+            showAddButton={true} 
+            icon="✏️" 
+          />
+        </div>
+      </div>
+   </div>
+  );
 };
 
 export default Task3;
