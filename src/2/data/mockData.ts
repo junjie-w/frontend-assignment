@@ -1,4 +1,4 @@
-import type { ItemData } from "../types";
+import type { ItemData } from "../../types";
 
 export const mockData: ItemData[] = [
   {

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 import Input from "../components/Input"
 import List from '../components/List'
 import { 
@@ -7,7 +7,8 @@ import {
   toggleTodo, 
   deleteTodo 
 } from './helpers'
-import type { ItemData as Todo } from '../2/types'
+import { fetchInitialTodos } from './data'
+import type { ItemData as Todo } from '../types'
 
 // Style
 import "./index.scss";
@@ -22,6 +23,15 @@ const Task3: React.FunctionComponent = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [newTodoText, setNewTodoText] = useState('');
+  
+  useEffect(() => {
+    const loadInitialTodos = async () => {
+      const initialTodos = await fetchInitialTodos();
+      setTodos(initialTodos);
+    };
+    
+    loadInitialTodos();
+  }, []);
   
   const filteredTodos = useMemo(() => 
     filterTodosBySearchQuery(todos, searchQuery), 
