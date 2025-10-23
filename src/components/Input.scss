@@ -1,5 +1,5 @@
 @import "../styles/_tokens.scss";
-@import "../styles/_form.scss";
+@import "../styles/_mixins.scss";
 
 .input-container {
   position: relative;
@@ -10,7 +10,7 @@
   input {
     flex: 1;
     padding: 16px 20px 16px 50px;
-    @include input-styles;
+    @include input;
     
     padding: 16px 20px 16px 50px;
     
@@ -30,9 +30,7 @@
   }
 
   .add-btn {
-    @include button-styles;
-    padding: 0 20px;
-    font-weight: 500;
+    @include button-action;
     
     &:hover {
       background: darken($uniwise-green, 5%);
