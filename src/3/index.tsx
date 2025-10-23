@@ -5,7 +5,8 @@ import {
   filterTodosBySearchQuery, 
   addTodo, 
   toggleTodo, 
-  deleteTodo 
+  deleteTodo, 
+  sortTodos
 } from './helpers'
 import { fetchInitialTodos } from './data'
 import type { ItemData as Todo } from '../types'
@@ -34,7 +35,7 @@ const Task3: React.FunctionComponent = () => {
   }, []);
   
   const filteredTodos = useMemo(() => 
-    filterTodosBySearchQuery(todos, searchQuery), 
+    sortTodos(filterTodosBySearchQuery(todos, searchQuery)), 
     [todos, searchQuery]
   );
   
