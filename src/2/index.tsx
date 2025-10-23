@@ -4,6 +4,7 @@ import { FunctionComponent, useMemo, useState } from "react";
 import Input from "../components/Input";
 import List from "../components/List";
 import { mockData } from "./data/mockData";
+import { SearchIcon } from "../icons";
 
 const Task2: FunctionComponent = () => {
   const placeholder = "Search beers..."
@@ -30,7 +31,7 @@ const Task2: FunctionComponent = () => {
         value={searchQuery}
         onChange={setSearchQuery}
         placeholder={placeholder}
-        icon="🔍"
+        icon={<SearchIcon/>}
       />
       <br />
       <List 

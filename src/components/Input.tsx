@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import React, { ReactNode, FunctionComponent } from "react";
 import './Input.scss';
 
 /*
@@ -16,7 +16,7 @@ export interface InputProps {
   onChange?: (value: string) => void
   onAdd?: (text: string) => void
   placeholder?: string
-  icon?: string
+  icon?: ReactNode
   showAddButton?: boolean
 }
 

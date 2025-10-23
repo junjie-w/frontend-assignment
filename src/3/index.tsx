@@ -13,6 +13,7 @@ import type { ItemData as Todo } from '../types'
 
 // Style
 import "./index.scss";
+import { PencilIcon, SearchIcon } from "../icons"
 
 // Components
 /*
@@ -64,7 +65,7 @@ const Task3: React.FunctionComponent = () => {
           value={searchQuery}
           onChange={setSearchQuery}
           placeholder="Search todos..."
-          icon="🔍"
+          icon={<SearchIcon />}
         />       
       </div>
       <div className="todo-container">
@@ -83,7 +84,7 @@ const Task3: React.FunctionComponent = () => {
           onAdd={handleAddTodo}
           placeholder="Add a todo..." 
           showAddButton={true} 
-          icon="✏️" 
+          icon={<PencilIcon />}
         />
       </div>
    </div>

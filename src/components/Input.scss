@@ -27,6 +27,28 @@
     transform: translateY(-50%);
     font-size: 18px;
     pointer-events: none;
+    color: #999;
+    transition: all 0.3s ease;
+    z-index: 1;
+    opacity: 0.7;
+  }
+
+  input:hover:not(:focus) + .input-icon {
+    color: darken($uniwise-green, 15%);
+    opacity: 0.8;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  input:focus + .input-icon {
+    color: darken($uniwise-green, 5%);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  input:active + .input-icon {
+    color: darken($uniwise-green, 10%);
+    opacity: 1;
+    transform: translateY(-50%) scale(0.95);
   }
 
   .add-btn {
