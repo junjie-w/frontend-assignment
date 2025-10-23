@@ -1,5 +1,5 @@
 @import "../styles/_tokens.scss";
-@import "../styles/_form.scss";
+@import "../styles/_mixins.scss";
 
 /* DO NOT CHANGE THIS ROOT CLASS NAME*/
 #task-1 {
@@ -31,21 +31,13 @@
     }
 
     input {
-      @include input-styles;
+      @include input;
       
       margin-bottom: 4px;
     }
 
     button {
-      @include button-styles;
-      width: 100%;
-      margin-top: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      
-      &:focus {
-        box-shadow: $shadow-focus;
-      }
+      @include button-form;
     }
   }
 }
