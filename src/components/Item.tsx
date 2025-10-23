@@ -12,7 +12,7 @@ import './Item.scss';
  * and remove the ItemProps interface
  */
 
-export interface ItemProps {
+interface ItemProps {
   id?: string;
   text: string;
   searchQuery?: string;

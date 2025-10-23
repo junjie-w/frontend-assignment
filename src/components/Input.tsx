@@ -11,7 +11,7 @@ import './Input.scss';
  * and remove the InputProps interface
  */
 
-export interface InputProps {
+interface InputProps {
   value?: string
   onChange?: (value: string) => void
   onAdd?: (text: string) => void
