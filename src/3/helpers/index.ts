@@ -1,7 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
 import type { ItemData as Todo } from '../../types';
 
 export const generateTodoId = (): string => {
-  return `t-${Date.now()}`
+  return uuidv4();
 }
 
 export const filterTodosBySearchQuery = (todos: Todo[], searchQuery: string): Todo[] => {
@@ -11,11 +12,6 @@ export const filterTodosBySearchQuery = (todos: Todo[], searchQuery: string): To
   return todos.filter(todo => 
     todo.text.toLowerCase().includes(query)
   )
-}
-
-export const addTodo = (todos: Todo[], text: string): Todo[] => {
-  const id = generateTodoId();
-  return [{ id, text, completed: false }, ...todos];
 }
 
 export const toggleTodo = (todos: Todo[], id: string): Todo[] => {

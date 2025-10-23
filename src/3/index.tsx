@@ -1,12 +1,11 @@
-import React, { useState, useMemo, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Input from "../components/Input"
 import List from '../components/List'
 import { 
   filterTodosBySearchQuery, 
-  addTodo, 
+  generateTodoId,
   toggleTodo, 
   deleteTodo, 
-  sortTodos
 } from './helpers'
 import { fetchInitialTodos } from './data'
 import type { ItemData as Todo } from '../types'
@@ -27,38 +26,35 @@ const Task3: React.FunctionComponent = () => {
   
   useEffect(() => {
     const loadInitialTodos = async () => {
-      const initialTodos = await fetchInitialTodos();
-      setTodos(initialTodos);
-    };
+      try {
+        const initialTodos = await fetchInitialTodos()
+        setTodos(initialTodos)
+      } catch (error) {
+        console.error('Failed to load initial todos:', error)
+        setTodos([])
+      }
+    }
     
-    loadInitialTodos();
-  }, []);
-  
-  const filteredTodos = useMemo(() => 
-    sortTodos(filterTodosBySearchQuery(todos, searchQuery)), 
-    [todos, searchQuery]
-  );
+    loadInitialTodos()
+  }, [])
   
   const handleAddTodo = (text: string) => {
     if (text.trim()) {
-      setTodos(prev => addTodo(prev, text))
-      setNewTodoText('')
+      const id = generateTodoId();
+      setTodos(prev => [{ id, text, completed: false }, ...prev]);
+      setNewTodoText('');
     }
   };
   
   const handleToggleTodo = (id: string) => 
-    setTodos(prev => toggleTodo(prev, String(id)))
+    setTodos(prev => toggleTodo(prev, id))
   
   const handleDeleteTodo = (id: string) => 
-    setTodos(prev => deleteTodo(prev, String(id)))
-  
-  const handleNewTodoChange = (value: string) => {
-    setNewTodoText(value);
-  };
+    setTodos(prev => deleteTodo(prev, id))
 
   return (
    <div id="task-3">
-    <h2 className="app-title">Todo List</h2>
+    <h2 className="title">Todo List</h2>
       <div className="todo-inputs">
         <Input 
           value={searchQuery}
@@ -69,7 +65,7 @@ const Task3: React.FunctionComponent = () => {
       </div>
       <div className="todo-container">
         <List 
-          items={filteredTodos}
+          items={filterTodosBySearchQuery(todos, searchQuery)}
           searchQuery={searchQuery}
           onToggle={handleToggleTodo}
           onDelete={handleDeleteTodo}
@@ -79,7 +75,7 @@ const Task3: React.FunctionComponent = () => {
       <div className="add-todo-container">
         <Input 
           value={newTodoText}
-          onChange={handleNewTodoChange}
+          onChange={setNewTodoText}
           onAdd={handleAddTodo}
           placeholder="Add a todo..." 
           showAddButton={true} 
