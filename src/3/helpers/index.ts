@@ -1,4 +1,4 @@
-import type { ItemData as Todo } from '../2/types';
+import type { ItemData as Todo } from '../../types';
 
 export const generateTodoId = (): string => {
   return `t-${Date.now()}`
