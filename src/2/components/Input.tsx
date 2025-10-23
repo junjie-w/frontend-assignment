@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import './Input.scss';
 
 /*
  * The InputProps interface defines the types for the components props.
@@ -10,11 +11,33 @@ import { FunctionComponent } from "react";
  * and remove the InputProps interface
  */
 
-interface InputProps {}
+interface InputProps {
+  value: string
+  onChange: (value: string) => void
+  placeholder: string
+  icon?: string
+}
 
-const Input: FunctionComponent<InputProps> = (props) => {
+const Input: FunctionComponent<InputProps> = ({ 
+  value, 
+  onChange, 
+  placeholder,
+  icon
+}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
+
   return (
-    <div>#Input goes here#</div>
+    <div className="input-container">
+      <input
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        aria-label={placeholder}
+      />
+      {icon && <div className="input-icon">{icon}</div>}
+    </div>
   );
 };
 

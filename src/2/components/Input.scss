@@ -1,0 +1,45 @@
+@import "../../theme.scss";
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+
+  input {
+    flex: 1;
+    padding: 16px 20px 16px 50px;
+    font-size: 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    background: $uniwise-white;
+    color: $text-primary;
+    transition: $transition-default;
+    font-family: inherit;
+
+    &::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $uniwise-green;
+      box-shadow: $shadow-focus;
+      background: $background-light;
+    }
+
+    &:hover:not(:focus) {
+      border-color: #c1c9d2;
+      box-shadow: $shadow-small;
+    }
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none;
+  }
+}

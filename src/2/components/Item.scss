@@ -1,0 +1,47 @@
+@import "../../theme.scss";
+
+.search-item {
+  background: $uniwise-white;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  padding: 16px;
+  position: relative;
+  transition: $transition-default;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $uniwise-green;
+    box-shadow: $shadow-medium;
+
+  }
+
+  .item-content {
+    position: relative;
+    padding-left: 12px;
+
+    .item-indicator {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: $uniwise-green;
+      border-radius: 2px;
+    }
+
+    .item-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .item-name {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: $text-primary;
+      line-height: 1.3;
+    }
+  }
+}
