@@ -1,7 +1,7 @@
 // Style
 import { FunctionComponent, useState } from "react";
 import "./index.scss";
-import { validateForm } from "../helpers/form-validation.helper";
+import { validateForm } from "../helpers";
 
 const Task1: FunctionComponent = () => {
   const [email, setEmail] = useState("")

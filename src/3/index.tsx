@@ -6,7 +6,7 @@ import {
   generateTodoId,
   toggleTodo, 
   deleteTodo, 
-} from './helpers'
+} from '../helpers'
 import { fetchInitialTodos } from './data'
 import type { ItemData as Todo } from '../types'
 

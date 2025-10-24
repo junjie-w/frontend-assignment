@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import type { ItemData as Todo } from '../../types';
+import type { ItemData as Todo } from '../types';
 
 export const generateTodoId = (): string => {
   return uuidv4();
