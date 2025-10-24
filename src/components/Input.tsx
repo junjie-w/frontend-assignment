@@ -12,8 +12,8 @@ import './Input.scss';
  */
 
 interface InputProps {
-  value?: string
-  onChange?: (value: string) => void
+  value: string
+  onChange: (value: string) => void
   onAdd?: (text: string) => void
   placeholder?: string
   icon?: string
@@ -21,7 +21,7 @@ interface InputProps {
 }
 
 const Input: FunctionComponent<InputProps> = ({ 
-  value = '', 
+  value, 
   onChange, 
   onAdd,
   placeholder = '',
@@ -29,7 +29,7 @@ const Input: FunctionComponent<InputProps> = ({
   showAddButton = false
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.value)
+    onChange(e.target.value)
   };
 
   const handleSubmit = (e: React.FormEvent) => {
