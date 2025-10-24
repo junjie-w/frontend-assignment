@@ -1,6 +1,7 @@
 // Style
 import { FunctionComponent, useState } from "react";
 import "./index.scss";
+import { validateForm } from "../helpers/form-validation.helper";
 
 const Task1: FunctionComponent = () => {
   const [email, setEmail] = useState("")
@@ -35,44 +36,16 @@ const Task1: FunctionComponent = () => {
     clearPasswordError()
   };
 
-  const validateForm = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-    let emailHasError = false;
-    let emailMessage = "";
-    let passwordHasError = false;
-    let passwordMessage = "";
-
-    if (!email.trim()) {
-      emailHasError = true;
-      emailMessage = "Please enter an email";
-    } else {
-      if (!emailRegex.test(email)) {
-        emailHasError = true;
-        emailMessage = "Please enter a valid email";
-      }
-    }
-
-    if (!password.trim()) {
-      passwordHasError = true;
-      passwordMessage = "Please enter a password";
-    } else if (password.length < 8) {
-      passwordHasError = true;
-      passwordMessage = "Password should be at least 8 letters";
-    }
-
-    setEmailError(emailHasError);
-    setEmailErrorMessage(emailMessage);
-    setPasswordError(passwordHasError);
-    setPasswordErrorMessage(passwordMessage);
-
-    return !emailHasError && !passwordHasError;
-  };
-
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm()) {
+    const validation = validateForm(email, password);
+    setEmailError(validation.emailHasError);
+    setEmailErrorMessage(validation.emailMessage);
+    setPasswordError(validation.passwordHasError);
+    setPasswordErrorMessage(validation.passwordMessage);
+    
+    if (validation.isValid) {
       alert(`Email: ${email} \nPassword: ${password}`);
       setEmail("");
       setPassword("");
